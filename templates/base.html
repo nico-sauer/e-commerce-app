@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %} Car Rental {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+<header>
+    <h1>E-Commerce App</h1>
+    <nav>
+    <a href="/">Home</a>
+    <a href="/login/" class="button" >Login</a>
+    <a href="/registration/"class="button" >Register</a>
+    </nav>
+</header>
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
