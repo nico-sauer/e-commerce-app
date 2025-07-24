@@ -9,37 +9,18 @@
 {% comment %} add the register to base.html/users/register.html  {% endcomment %}
 {% comment %} to pass it to base.html:  {% endcomment %}
 
-{% if user.is_authenticated %}
-
-    {% comment %} <form method="post" action="{% url 'logout' %}">
-  {% csrf_token %}
-  <button type="submit">Log out</button>
-    </form> {% endcomment %}
-
-OR:
-    <a class = "nav-link" href=" {% url 'logout' %}">Logout</a>
-
-{% else %}
-    <a class="nav-link" href=" { % url 'login' % }">Login</a>"
-    <a class="nav-link" href=" { % url 'register' % }">Register</a>"
-
-{% endif %}
-
-
 
 {% comment %} .as_p will add p tag for the form  {% endcomment %}
 
+{% comment %} read about action=  {% endcomment %}
 
-
-read about action= 
-
-
+{% comment %} 
 to add image to the html file we will add:
-<img src="">
-
+<img src=""> {% endcomment %}
+{% comment %} 
 to add href to image:
 
 <a href="">
     <img
     src="the path of the img">
-</a>
+</a> {% endcomment %}
