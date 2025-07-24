@@ -1,0 +1,46 @@
+{% comment %} 
+add to the main templates the login.html file. the file login.html should be in templates/registration dir
+maybe we will need to add <br></br> or <li></li> to the nav bar to list or make spaces between the login/register {% endcomment %}
+
+{% extends 'base.html' %} #add config/base.html if login is not in the same tamplate folder
+
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit"> Login</button>
+</form>
+
+
+
+
+
+
+add the form that the template will get.
+
+{% load crispy_forms_tags %}
+we can add {{ form|crispy}} to style the form
+
+
+
+
+we can add to base.html:
+
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+</div>
+
+it will show the messages from the view.
+we can add color to the message:
+
+<div class="alert ..."role="alert">
+
+    {{message}}
+and can also add a closing button
+<button type="button"
+class="btn-close"
+data-bs-dismiss="alert"
+aria-label="close'></button>
+</div>

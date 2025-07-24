@@ -1,0 +1,17 @@
+ {% extends 'base.html' %}
+
+{% block title %}
+ Confirm Payment
+{% endblock %}
+
+{% block content %}
+<h2>Confirm Payment</h2>
+<p>Customer Name: {{ order.first_name order.last_name }}</p>
+<p>Order Number: {{ order.order_id }}</p>
+<p>Total Amount: ${{ order.total_price }}</p>
+<form method="post">
+{% csrf_token %}
+<button type="submit">Pay Now</button>
+</form>
+{% endblock %}
+        

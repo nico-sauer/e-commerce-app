@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from .forms import RegisterForm, LoginForm
 
 
-def register(request):
+
+def register_user(request):
     # Check if the form has been submitted
     if request.method == "POST":
         # inputting submitted info to the form
@@ -10,15 +13,37 @@ def register(request):
         # Check if the form is valid
         if form.is_valid():
             form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username = username, password = password)
+            login(request, user)
+            messages.success(request, "Registration successful!")
             # Redirect to home page
-            return redirect("core:home")
+            return redirect("/")
     else:
         form = RegisterForm()
-        return render(request, "users/register.html", {"form": form})
+        return render(request, 'users/register.html', {'form': form})
     
     
-    def login():
-        pass
-    
-    def logout():
-        pass
+    def login_user(request):
+        if request.method == "POST":
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username = username, password = password)    
+            if user is not None: 
+                login(request, user)
+                return redirect('home') #if not working try ("core:home")
+            else:
+                messages.success(request, "There was an error. Try to log in again")
+                return redirect('login')
+        else: 
+            form = LoginForm
+            return render(request, 'users/login.html', {'form' : form})   
+        
+         
+    def logout_user():
+        logout(request)
+        messages.success(request, "You were logged out")
+        return redirect('home')
+        
+        
