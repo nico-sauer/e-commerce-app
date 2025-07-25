@@ -18,15 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('core.urls'), namespace='core'),
+    path('', include('core.urls', namespace='core')),
     path('admin/', admin.site.urls),
-    path('cart/', include('cart.urls'), namespace='cart'),
-    path('orders/', include('orders.urls'), namespace='orders'),
-    path('payments/', include('payments.urls'), namespace='payments'),
-    path('shop/', include('shop.urls'), namespace='shop'),
-    path('users/', include('users.urls'), namespace='users'),
+    path('cart/', include('cart.urls', namespace='cart')),
+    path('orders/', include('orders.urls', namespace='orders')),
+    path('payments/', include('payments.urls', namespace='payments')),
+    path('shop/', include('shop.urls', namespace='shop')),
+    path('users/', include('users.urls', namespace='users')),
     path('users/', include('django.contrib.auth.urls')),
-
-    #add the patterns dont forget
     
 ]

@@ -27,9 +27,9 @@ def register_user(request):
     
     def login_user(request):
         if request.method == "POST":
-            username = form.cleaned_data['username']
+            email = form.cleaned_data['email address']
             password = form.cleaned_data['password']
-            user = authenticate(username = username, password = password)    
+            user = authenticate(email = email, password = password)    
             if user is not None: 
                 login(request, user)
                 return redirect('home') #if not working try ("core:home")
@@ -37,8 +37,7 @@ def register_user(request):
                 messages.success(request, "There was an error. Try to log in again")
                 return redirect('login')
         else: 
-            form = LoginForm
-            return render(request, 'users/login.html', {'form' : form})   
+            return render(request,'registration/login.html') #add registration/ if not working  
         
          
     def logout_user():
