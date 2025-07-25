@@ -12,20 +12,16 @@ def cart_add(request):
 	cart = Cart(request)
 	
 	if request.POST.get('action') == 'post':
-		# Get stuff
+		
 		product_id = int(request.POST.get('product_id'))
 		product_qty = int(request.POST.get('product_qty'))
 
 
 		product = get_object_or_404(Product, id=product_id)
 		cart.add(product=product, quantity=product_qty)
-		cart_quantity = cart.__len__()
 
-		# Return resonse
-		# response = JsonResponse({'Product Name: ': product.name})
-		response = JsonResponse({'qty': cart_quantity})
-		messages.success(request, ("Added To Cart..."))
-		return response
+		#messages.success(request, ("Added To Cart..."))
+		return render(request, 'templates/cart/cart_add.html')
 
 
 # 2. `cart_remove` - Removes a product from the cart
@@ -37,15 +33,25 @@ def cart_delete(request):
 		product_id = int(request.POST.get('product_id'))
 
 		cart.delete(product=product_id)
-
-		response = JsonResponse({'product':product_id})
-		#return redirect('cart_summary')
-		messages.success(request, ("Removed From Cart..."))
-		return response
-
-
-
+		#messages.success(request, ("Removed From Cart..."))
+		return render(request, 'templates/cart/cart_delete.html')
 
 # 3. `cart_detail` - Which displays all products already in the cart
-# 4. `cart_clear` - Clears the cart completely
 
+def cart_detail(request):
+    cart = Cart(request)
+	if request.POST.get('action') == 'post':
+
+		cart.__iter__
+		return render(request, 'templates/cart/cart_detail.html')
+
+
+# 4. `cart_clear` - Clears the cart completely
+def cart_clear(request):
+	cart = Cart(request)
+	if request.POST.get('action') == 'post':
+
+		#product_id = int(request.POST.get('product_id'))
+		cart.clear
+		#messages.success(request, ("Cart Cleared..."))
+		return render(request, 'templates/cart/cart_clear.html')

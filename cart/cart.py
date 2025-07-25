@@ -10,11 +10,13 @@ class Cart(object):  # Request object
         """
         self.session = request.session
 		self.request = request
+  
 		cart = self.session.get('session_key')
 
 		# if no session -> start session  
 		if 'session_key' not in request.session:
 			cart = self.session['session_key'] = {}
+        
 		self.cart = cart
 
     
@@ -26,7 +28,10 @@ class Cart(object):  # Request object
 		product_qty = str(quantity)
 		
 		if product_id in self.cart: #overide_quantity 
-			self.cart[product_id] = int(product_qty)
+			
+            self.cart[product_id] = int(product_qty) + 1
+            override_quantity = True
+            #return override_quantity
         
 		else:
 			#self.cart[product_id] = {'price': str(product.price)}
@@ -76,15 +81,11 @@ class Cart(object):  # Request object
 			k = int(k)
 			for product in products:
 				if product.id == k:
-					if product.is_sale:
-						total_price = total_price + (product.sale_price * v)
-					else:
-						total_price = total_price + (product.price * v)
-
+				    total_price = total_price + (product.price * v)
 		return total_price
 
 
-    def clear(self, product):
+    def clear(self):
         """Removes cart from the session."""
     
         product_ids = self.cart.keys()
@@ -96,13 +97,15 @@ class Cart(object):  # Request object
                    
         #del self.cart['session_key'] #or just deleting the full session ??
                    
-               
-		save()
+        save()
   
   
 
     def get_discount(self):
-        pass
+        #coupon code field/form? 
 
-    def get_total_price_after_discount(self):
-        pass
+    def get_total_price_after_discount(self, total_price, discount):
+         
+        price_after_discount = total_price * discount / 100
+        return price_after_discount
+       
