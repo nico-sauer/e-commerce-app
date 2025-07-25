@@ -1,7 +1,9 @@
 from django.db import models
+from parler.models import TranslatableModel
+
 
 class Category(TranslatableModel):
-    name=models.CharField(max_length=200, db_index=True),
+    name=models.CharField(max_length=200, db_index=True)
     slug=models.SlugField(max_length=200, unique=True)
 
     class Meta:
@@ -17,9 +19,9 @@ class Category(TranslatableModel):
 
 
 class Product(TranslatableModel):
-    name=models.CharField(max_length=200, db_index=True),
-    slug=models.SlugField(max_length=200, db_index=True),
-    description=models.TextField(blank=True),
+    name=models.CharField(max_length=200, db_index=True)
+    slug=models.SlugField(max_length=200, db_index=True)
+    description=models.TextField(blank=True)
     sku = models.CharField(max_length=20, unique=True, null=True)
     category = models.ForeignKey(
         Category, related_name="products", on_delete=models.CASCADE

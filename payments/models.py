@@ -1,4 +1,9 @@
 from django.db import models
+from shop.models import Product
+from orders.models import Order
+#from users.models import CustomUser
+#from config.settings import AUTH_USER_MODEL
+from config import settings
 
 class Payment(models.Model):
     class PaymentMethod(models.TextChoices):

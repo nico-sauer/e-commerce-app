@@ -10,13 +10,12 @@ from users.models import CustomUser
 
 def cart_add(request):
 	cart = Cart(request)
-	
+
 	if request.POST.get('action') == 'post':
-		
+     
 		product_id = int(request.POST.get('product_id'))
 		product_qty = int(request.POST.get('product_qty'))
-
-
+  
 		product = get_object_or_404(Product, id=product_id)
 		cart.add(product=product, quantity=product_qty)
 
@@ -28,10 +27,10 @@ def cart_add(request):
 
 def cart_delete(request):
 	cart = Cart(request)
+
 	if request.POST.get('action') == 'post':
 
 		product_id = int(request.POST.get('product_id'))
-
 		cart.delete(product=product_id)
 		#messages.success(request, ("Removed From Cart..."))
 		return render(request, 'templates/cart/cart_delete.html')
@@ -39,18 +38,16 @@ def cart_delete(request):
 # 3. `cart_detail` - Which displays all products already in the cart
 
 def cart_detail(request):
-    cart = Cart(request)
+	cart = Cart(request)
 	if request.POST.get('action') == 'post':
-
 		cart.__iter__
-		return render(request, 'templates/cart/cart_detail.html')
+		return render(request, 'cart/cart_detail.html')
 
 
 # 4. `cart_clear` - Clears the cart completely
 def cart_clear(request):
 	cart = Cart(request)
 	if request.POST.get('action') == 'post':
-
 		#product_id = int(request.POST.get('product_id'))
 		cart.clear
 		#messages.success(request, ("Cart Cleared..."))

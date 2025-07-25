@@ -7,7 +7,7 @@ def pay(request, order_id):
     if request.method == "POST":
         Payment.objects.create(
             order=order,
-            amount_paid=booking.total_price(),
+            amount_paid=order.total_price(),
             status="success",
         )
         order.confirmed = True
