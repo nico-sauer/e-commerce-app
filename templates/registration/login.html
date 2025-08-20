@@ -1,28 +1,32 @@
+
+{% extends 'base.html' %}
+
 {% comment %} 
 add to the main templates the login.html file. the file login.html should be in templates/registration dir
 maybe we will need to add <br></br> or <li></li> to the nav bar to list or make spaces between the login/register {% endcomment %}
 
-{% extends 'base.html' %} #add config/base.html if login is not in the same tamplate folder
 
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit"> Login</button>
-</form>
+{% comment %} 
+ #add config/base.html if login is not in the same tamplate folder {% endcomment %}
+{% block content %}
+    <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit"> Login</button>
+        </form>
+
+{% endblock %}
 
 
 
-
-
-
-add the form that the template will get.
-
+{% comment %} add the form that the template will get. {% endcomment %}
+{% comment %} 
 {% load crispy_forms_tags %}
-we can add {{ form|crispy}} to style the form
+we can add {{ form|crispy}} to style the form {% endcomment %}
 
 
-
+{% comment %} 
 
 we can add to base.html:
 
@@ -43,4 +47,4 @@ and can also add a closing button
 class="btn-close"
 data-bs-dismiss="alert"
 aria-label="close'></button>
-</div>
+</div> {% endcomment %}

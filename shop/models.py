@@ -35,7 +35,7 @@ class Product(TranslatableModel):
 
     class Meta:
         ordering = ("name",)
-        index_together = (("id", "slug"),)
+        # index_together = (("id", "slug"),)
 
     def __str__(self):
         return self.name

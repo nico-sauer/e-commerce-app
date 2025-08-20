@@ -27,8 +27,12 @@ def register_user(request):
 
 def login_user(request):
     if request.method == "POST":
-        email = form.cleaned_data['email address']
-        password = form.cleaned_data['password']
+        
+        email = request.POST['email address']
+        password = request.POST['password']
+        
+        # email = form.cleaned_data['email address']
+        # password = form.cleaned_data['password']
         user = authenticate(email = email, password = password)    
         if user is not None: 
             login(request, user)
