@@ -1,6 +1,56 @@
+{% extends 'base.html' %}
+{% block title %} Add to cart {% endblock title %}
+{% block content %}
+<h1>Added to Cart...</h1>
+{% endblock content %}
 
-{% extends "base.html" %}
 
+
+
+
+
+
+{% extends 'base.html' %}
+{% block title %} Add to cart {% endblock title %}
+{% block content %}
+<h1>Added to Cart</h1>
+<p>The item, {{ product.name }} was added to the cart.</p>
+<a href="{% url 'cart:cart' %}" class="btn btn-primary">View Cart</a>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
+% extends "base.html" %}
 {% block content %}    
     {{ message }}
 
@@ -8,4 +58,4 @@
         {% csrf_token %}
         <input type="submit" value="Added to Cart...">
     </form>
-{% endblock %}
+{% endblock %} {% endcomment %} 

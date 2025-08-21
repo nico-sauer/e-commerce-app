@@ -8,7 +8,6 @@
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th>Total Price</th>
                     <th></th>
                 </tr>
             </thead>
@@ -18,22 +17,28 @@
                         <td>{{ item.product }}</td>
                         <td>{{ item.quantity }}</td>
                         <td>{{ item.product.price }}</td>
-                        <td>{{ item.quantity * item.product.price }}</td>
-                        <td><a href="{% url 'cart:remove_from_cart' item.id %}">Remove</a></td>
+                        <td><a href="{% url 'cart:cart_delete' item.id %}">Remove from Cart</a></td> 
+                        {% comment %} <button class="delete_buttton" type="button">Remove from Cart</button> {% endcomment %}
                     </tr>
                 {% endfor %}
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3"></td>
+                    <td colspan="2"></td>
                     <td>Total:</td>
                     <td>{{ total_price }}</td>
                 </tr>
             </tfoot>
         </table>
 
-        <a href="{% url 'checkout' %}" class="btn btn-primary">Checkout</a>
+        <a href="{% url 'orders:checkout' %}" class="checkout_btn">Checkout</a>
     {% else %}
+        <br></br>
+        <br></br>
         <p>Your shopping cart is empty.</p>
     {% endif %}
 {% endblock %}
+
+
+
+<a href="{% url 'cart:cart' %}">View Cart</a> LINK FOR BASE LATER

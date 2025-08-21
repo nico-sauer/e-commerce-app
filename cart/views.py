@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .cart import Cart
 from shop.models import Product
-from orders.models import Order
-from users.models import CustomUser
+# from orders.models import Order
+# from users.models import CustomUser
 # Create your views here.
 
 
@@ -15,14 +15,14 @@ def cart_add(request):
      
 		product_id = int(request.POST.get('product_id'))
 		product_qty = int(request.POST.get('product_qty'))
-  
 		product = get_object_or_404(Product, id=product_id)
+  
 		cart.add(product=product, quantity=product_qty)
+		#return render (request, ("Added To Cart..."))
 
-		#messages.success(request, ("Added To Cart..."))
-		return render(request, 'templates/cart/cart_add.html')
-
-
+		return render(request, 'cart/cart_add.html')
+	
+	
 # 2. `cart_remove` - Removes a product from the cart
 
 def cart_delete(request):
@@ -33,15 +33,12 @@ def cart_delete(request):
 		product_id = int(request.POST.get('product_id'))
 		cart.delete(product=product_id)
 		#messages.success(request, ("Removed From Cart..."))
-		return render(request, 'templates/cart/cart_delete.html')
+		return render(request, 'cart/cart_delete.html')
 
 # 3. `cart_detail` - Which displays all products already in the cart
 
 def cart_detail(request):
-	cart = Cart(request)
-	if request.POST.get('action') == 'post':
-		cart.__iter__
-		return render(request, 'cart/cart_detail.html')
+	return render(request, 'cart/cart_detail.html')
 
 
 # 4. `cart_clear` - Clears the cart completely
@@ -51,4 +48,4 @@ def cart_clear(request):
 		#product_id = int(request.POST.get('product_id'))
 		cart.clear
 		#messages.success(request, ("Cart Cleared..."))
-		return render(request, 'templates/cart/cart_clear.html')
+		return render(request, 'cart/cart_clear.html')
