@@ -13,9 +13,9 @@ def register_user(request):
         # Check if the form is valid
         if form.is_valid():
             form.save()
-            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
-            user = authenticate(username = username, password = password)
+            user = authenticate(username = email, password = password)
             login(request, user)
             messages.success(request, "Registration successful!")
             # Redirect to home page
@@ -36,7 +36,7 @@ def login_user(request):
         user = authenticate(email = email, password = password)    
         if user is not None: 
             login(request, user)
-            return redirect('home') #if not working try ("core:home")
+            return redirect("/") #if not working try ("core:home")
         else:
             messages.success(request, "There was an error. Try to log in again")
             return redirect('login')
@@ -47,7 +47,7 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     messages.success(request, "You were logged out")
-    return redirect('home')
+    return redirect('index')
     
 
     # def logged_in(request):
