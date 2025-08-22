@@ -31,12 +31,10 @@ def login_user(request):
         email = request.POST['email address']
         password = request.POST['password']
         
-        # email = form.cleaned_data['email address']
-        # password = form.cleaned_data['password']
         user = authenticate(email = email, password = password)    
         if user is not None: 
             login(request, user)
-            return redirect("/") #if not working try ("core:home")
+            return redirect("/")
         else:
             messages.success(request, "There was an error. Try to log in again")
             return redirect('login')
@@ -45,10 +43,9 @@ def login_user(request):
     
         
 def logout_user(request):
-    logout(request)
-    messages.success(request, "You were logged out.")
-    return redirect('index')
+    if request.method == "POST":
+        logout(request)
+        messages.success(request, "You were logged out.")
+        return redirect("/")
     
-
-    # def logged_in(request):
         

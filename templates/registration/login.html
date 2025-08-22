@@ -12,7 +12,7 @@ maybe we will need to add <br></br> or <li></li> to the nav bar to list or make 
     <h2>Login</h2>
         <form method="post">
             {% csrf_token %}
-            {{ form }}
+            {{ form.as_p}}
             <button type="submit"> Login</button>
         </form>
 
