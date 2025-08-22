@@ -1,8 +1,6 @@
 #from django.db import models
 #from django.conf import settings
 from shop.models import Product
-# from orders.models import Order
-# from users.models import CustomUser
 
 class Cart(object):  # Request object
     def __init__(self, request):
@@ -25,18 +23,6 @@ class Cart(object):  # Request object
         """
         Add a product to the cart or update its quantity.
         """
-        # product_id = str(product.id)
-        # product_qty = self.quantity
-
-        # if product_id in self.cart: #overide_quantity 
-        #     new_qty = quantity + product_qty
-        #     self.cart[product_id]['quantity'] = new_qty
-        #     override_quantity = True
-        #     return override_quantity
-        
-
-        # else:
-        #     self.cart[product_id] = {'quantity': quantity, 'price': str(product.price)}
             
         product_id = str(product.id)
         if product_id not in self.cart:
